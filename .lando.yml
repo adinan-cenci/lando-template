@@ -1,0 +1,19 @@
+name: personal
+recipe: lamp
+config:
+  php: '7.4'
+  webroot: ./web/
+  composer_version: '2.1.3'
+  database: mysql:5.7
+  xdebug: 'debug,coverage'
+  config:
+    server: ./.lando/
+    php: ./.lando/php/php.ini
+services:
+  pma:
+    type: 'phpmyadmin:5.0'
+    hosts:
+      - database
+proxy:
+  pma:
+    - pma.personal.lndo.site
