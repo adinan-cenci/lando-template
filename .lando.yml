@@ -14,6 +14,19 @@ services:
     type: 'phpmyadmin:5.0'
     hosts:
       - database
+  node:
+    type: node
+    globals:
+      gulp-cli: latest
+tooling:
+  node:
+    service: node
+  npm:
+    service: node
+  yarn:
+    service: node
+  gulp:
+    service: node
 proxy:
   pma:
     - pma.personal.lndo.site

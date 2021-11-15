@@ -3,7 +3,11 @@
 This is my personal template for web development.
 
 - PHP
+- Xdebug
+- Composer
 - MySql
 - PhpMyAdmin
-- Composer
-- Xdebug
+- Node
+- Npm
+- Yarn
+- Gulp
