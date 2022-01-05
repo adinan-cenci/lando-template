@@ -5,7 +5,7 @@ config:
   webroot: ./web/
   composer_version: '2.1.3'
   database: mysql:5.7
-  xdebug: 'debug,coverage'
+  xdebug: true
   config:
     server: ./.lando/
     php: ./.lando/php/php.ini
@@ -18,6 +18,14 @@ services:
     type: node
     globals:
       gulp-cli: latest
+
+  # Unset the XDEBUG_MODE env variable so the xdebug.mode setting in
+  # .lando/php/php.ini may not be ignored.
+  appserver:
+    overrides:
+      environment:
+        XDEBUG_MODE:
+
 tooling:
   node:
     service: node
@@ -27,6 +35,23 @@ tooling:
     service: node
   gulp:
     service: node
+
+  # Enable xdebug profiling by adding a new .ini file with an overriding
+  # xdebug.mode setting and reloading apache2.
+  profiling-on:
+    service: appserver
+    description: Enable XDebug profiling for Apache.
+    cmd: "echo 'xdebug.mode = debug,coverage,profile' > z && mv z /usr/local/etc/php/conf.d/zzz-lando-xdebug-profiling.ini && service apache2 reload"
+    user: root
+
+  # Disable xdebug profiling by deleting the file created by profiling-on
+  # and reloading apache2.
+  profiling-off:
+    service: appserver
+    description: Disable XDebug profiling for Apache.
+    cmd: "rm /usr/local/etc/php/conf.d/zzz-lando-xdebug-profiling.ini && service apache2 reload"
+    user: root
+
 proxy:
   pma:
     - pma.personal.lndo.site
