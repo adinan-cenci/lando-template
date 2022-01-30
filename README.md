@@ -1,14 +1,14 @@
-# Boilerplate PHP Lando environment
+# Full Stack Lando environment template
 
 This is my personal template for web development.
 
 - PHP
-- Xdebug
-  - Profiling: ( `lando profiling-on` and `lando profiling-off` )
-- Composer
+  - Composer
+  - Xdebug
+    - Enable and disable profiling by using the commands `lando profiling-on` and `lando profiling-off`.
 - MySql
-- PhpMyAdmin
+  - PhpMyAdmin
 - Node
-- Npm
-- Yarn
-- Gulp
+  - Npm
+  - Yarn
+  - Gulp

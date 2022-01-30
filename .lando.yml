@@ -19,8 +19,8 @@ services:
     globals:
       gulp-cli: latest
 
-  # Unset the XDEBUG_MODE env variable so the xdebug.mode setting in
-  # .lando/php/php.ini may not be ignored.
+  # Unset the XDEBUG_MODE environment variable, this way the xdebug.mode
+  # setting in .lando/php/php.ini will not be ignored.
   appserver:
     overrides:
       environment:
@@ -44,8 +44,8 @@ tooling:
     cmd: "echo 'xdebug.mode = debug,coverage,profile' > z && mv z /usr/local/etc/php/conf.d/zzz-lando-xdebug-profiling.ini && service apache2 reload"
     user: root
 
-  # Disable xdebug profiling by deleting the file created by profiling-on
-  # and reloading apache2.
+  # Disable xdebug profiling by deleting the file created by the profiling-on
+  # command and reloading apache2.
   profiling-off:
     service: appserver
     description: Disable XDebug profiling for Apache.
