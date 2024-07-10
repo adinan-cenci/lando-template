@@ -10,10 +10,8 @@ config:
     server: ./.lando/
     php: ./.lando/php/php.ini
 services:
-  pma:
-    type: 'phpmyadmin:5.0'
-    hosts:
-      - database
+  #database: disabled
+
   node:
     type: node
     globals:
@@ -51,7 +49,3 @@ tooling:
     description: Disable XDebug profiling for Apache.
     cmd: "rm /usr/local/etc/php/conf.d/zzz-lando-xdebug-profiling.ini && service apache2 reload"
     user: root
-
-proxy:
-  pma:
-    - pma.personal.lndo.site
